@@ -14,6 +14,17 @@
     html {
       padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
     }
+
+    /* FIX: matrix-canvas proteže se preko cele stranice i ostaje u pozadini */
+    #matrix-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      pointer-events: none;
+    }
   </style>
 
   <!-- Google Analytics 4 Script -->
@@ -22,15 +33,15 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-DZS2J4WKC6');
   </script>
-
 </head>
 <body>
 
+  <!-- FIX: Canvas izmešten iz #hero sekcije -->
+  <canvas id="matrix-canvas"></canvas>
+
   <section id="hero">
-    <canvas id="matrix-canvas"></canvas>
     <div class="hero-content">
       <h1>🧑‍💻 Hi, I'm Andrija</h1>
       <p>Cybersecurity Enthusiast • Red & Blue Teaming • Networking • OS internals</p>
@@ -76,46 +87,41 @@
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
 
-    // Funkcija za postavljanje veličine canvas-a
     function setCanvasSize() {
-      canvas.width = window.innerWidth; // Podesi širinu na širinu ekrana
-      canvas.height = window.innerHeight; // Podesi visinu na visinu ekrana
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     }
-    setCanvasSize(); // Pozovi funkciju da postavi veličinu odmah na učitavanje stranice
+    setCanvasSize();
 
-    // Definicija karaktera za Matrix
     const letters = 'アカサタナハマヤラワ0123456789'.split('');
-    const fontSize = window.innerWidth < 768 ? 22 : 16; // Veličina fonta zavisi od širine ekrana
-    const columns = Math.floor(canvas.width / fontSize); // Broj kolona na ekranu
-    const drops = Array(columns).fill(1); // Pozicija svakog padajućeg karaktera
+    const fontSize = window.innerWidth < 768 ? 22 : 16;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops = Array(columns).fill(1);
 
-    // Funkcija za crtanje Matrix efekta
     function drawMatrix() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; // Poluprozirna crna pozadina za efekt
-      ctx.fillRect(0, 0, canvas.width, canvas.height); // Ispuni ekran sa pozadinom
-      ctx.fillStyle = '#0f0'; // Zelena boja za tekst
-      ctx.font = `${fontSize}px monospace`; // Font za Matrix efekat
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#0f0';
+      ctx.font = `${fontSize}px monospace`;
 
       for (let i = 0; i < drops.length; i++) {
-        const text = letters[Math.floor(Math.random() * letters.length)]; // Izbor nasumičnog karaktera
-        const x = i * fontSize; // X pozicija svakog karaktera
-        const y = drops[i] * fontSize; // Y pozicija svakog karaktera
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
 
-        ctx.fillText(text, x, y); // Nacrtaj karakter na ekranu
+        ctx.fillText(text, x, y);
 
-        // Ako karakter pređe dno ekrana, ponovo počni sa vrha
         if (y > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
 
-        drops[i]++; // Povećaj poziciju padajućeg karaktera
+        drops[i]++;
       }
     }
 
-    setInterval(drawMatrix, 33); // Pozovi funkciju svakih 33ms za animaciju
-    window.addEventListener('resize', setCanvasSize); // Prilagodi canvas veličinu prilikom promena veličine ekrana
+    setInterval(drawMatrix, 33);
+    window.addEventListener('resize', setCanvasSize);
 
-    // Funkcija za skrolovanje na sledeću sekciju
     function scrollToNext() {
       const nextSection = document.querySelector('#about');
       if (nextSection) {
@@ -123,6 +129,5 @@
       }
     }
   </script>
-
 </body>
 </html>
