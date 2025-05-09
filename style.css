@@ -1,8 +1,14 @@
 /* === Global Styles === */
-body {
-  font-family: 'Share Tech Mono', monospace;
+html, body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Share Tech Mono', monospace;
   line-height: 1.6;
   background-color: #f4f4f4;
   color: #222;
@@ -30,16 +36,16 @@ ul {
 /* === Hero Section === */
 #hero {
   position: relative;
+  width: 100%;
+  height: 100vh;
   background-image: url('assets/hero-image.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: white;
   overflow: hidden;
 }
 
@@ -50,7 +56,7 @@ ul {
   top: 0; left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* tamna providnost */
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 1;
 }
 
@@ -58,6 +64,7 @@ ul {
 .hero-content {
   position: relative;
   z-index: 2;
+  color: white;
   padding: 1em 2em;
 }
 
@@ -65,6 +72,17 @@ ul {
 .hero-content h1,
 .hero-content p {
   text-shadow: 2px 2px 6px #000;
+}
+
+/* === Matrix Canvas === */
+#matrix-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* === Sekcije === */
@@ -104,14 +122,3 @@ footer {
     padding: 1em;
   }
 }
-
-#matrix-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
-
-
