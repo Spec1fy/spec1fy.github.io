@@ -1,39 +1,25 @@
-/* style.css */
-
-#hero {
-  background-image: url('assets/hero-image.jpg'); 
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed;
-  height: 100vh; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: white;
-}
-
-.hero-content h1 {
-  font-size: 4em;
-  margin: 0;
-}
-
-.hero-content p {
-  font-size: 1.5em;
-}
-
-/* Basic Layout */
+/* === Global Styles === */
 body {
   font-family: 'Share Tech Mono', monospace;
   margin: 0;
   padding: 0;
   line-height: 1.6;
   background-color: #f4f4f4;
+  color: #222;
 }
 
 h1, h2 {
-  font-size: 2em;
   color: #333;
+}
+
+a {
+  color: #00ccff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #0099cc;
 }
 
 ul {
@@ -41,41 +27,69 @@ ul {
   padding: 0;
 }
 
-a {
-  text-decoration: none;
-  color: #0077cc;
-  transition: color 0.3s;
+
+#hero {
+  position: relative;
+  background-image: url('assets/hero-image.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
 }
 
-a:hover {
-  color: #005fa3;
+
+#hero::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 1;
 }
 
-/* Section Styles */
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 1em 2em;
+}
+
+
+.hero-content h1,
+.hero-content p {
+  text-shadow: 2px 2px 6px #000;
+}
+
+
 section {
   padding: 2em;
-}
-
-#about, #projects, #skills, #contact {
   background-color: white;
-  margin-bottom: 1em;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 1em auto;
+  max-width: 800px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Footer */
+
 footer {
+  background-color: #111;
+  color: white;
   text-align: center;
   padding: 1em;
-  background-color: #333;
-  color: white;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
   #hero {
     height: auto;
-    padding: 2em 0;
+    padding: 4em 1em;
   }
 
   .hero-content h1 {
