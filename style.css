@@ -104,3 +104,14 @@ footer {
     padding: 1em;
   }
 }
+
+#matrix-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+
+
