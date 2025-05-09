@@ -22,14 +22,15 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+
     gtag('config', 'G-DZS2J4WKC6');
   </script>
+
 </head>
 <body>
 
-  <canvas id="matrix-canvas"></canvas>
-
   <section id="hero">
+    <canvas id="matrix-canvas"></canvas>
     <div class="hero-content">
       <h1>🧑‍💻 Hi, I'm Andrija</h1>
       <p>Cybersecurity Enthusiast • Red & Blue Teaming • Networking • OS internals</p>
@@ -75,41 +76,46 @@
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
 
+    // Funkcija za postavljanje veličine canvas-a
     function setCanvasSize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth; // Podesi širinu na širinu ekrana
+      canvas.height = window.innerHeight; // Podesi visinu na visinu ekrana
     }
-    setCanvasSize();
+    setCanvasSize(); // Pozovi funkciju da postavi veličinu odmah na učitavanje stranice
 
+    // Definicija karaktera za Matrix
     const letters = 'アカサタナハマヤラワ0123456789'.split('');
-    const fontSize = window.innerWidth < 768 ? 22 : 16;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops = Array(columns).fill(1);
+    const fontSize = window.innerWidth < 768 ? 22 : 16; // Veličina fonta zavisi od širine ekrana
+    const columns = Math.floor(canvas.width / fontSize); // Broj kolona na ekranu
+    const drops = Array(columns).fill(1); // Pozicija svakog padajućeg karaktera
 
+    // Funkcija za crtanje Matrix efekta
     function drawMatrix() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#0f0';
-      ctx.font = `${fontSize}px monospace`;
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; // Poluprozirna crna pozadina za efekt
+      ctx.fillRect(0, 0, canvas.width, canvas.height); // Ispuni ekran sa pozadinom
+      ctx.fillStyle = '#0f0'; // Zelena boja za tekst
+      ctx.font = `${fontSize}px monospace`; // Font za Matrix efekat
 
       for (let i = 0; i < drops.length; i++) {
-        const text = letters[Math.floor(Math.random() * letters.length)];
-        const x = i * fontSize;
-        const y = drops[i] * fontSize;
+        const text = letters[Math.floor(Math.random() * letters.length)]; // Izbor nasumičnog karaktera
+        const x = i * fontSize; // X pozicija svakog karaktera
+        const y = drops[i] * fontSize; // Y pozicija svakog karaktera
 
-        ctx.fillText(text, x, y);
+        ctx.fillText(text, x, y); // Nacrtaj karakter na ekranu
 
+        // Ako karakter pređe dno ekrana, ponovo počni sa vrha
         if (y > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
 
-        drops[i]++;
+        drops[i]++; // Povećaj poziciju padajućeg karaktera
       }
     }
 
-    setInterval(drawMatrix, 33);
-    window.addEventListener('resize', setCanvasSize);
+    setInterval(drawMatrix, 33); // Pozovi funkciju svakih 33ms za animaciju
+    window.addEventListener('resize', setCanvasSize); // Prilagodi canvas veličinu prilikom promena veličine ekrana
 
+    // Funkcija za skrolovanje na sledeću sekciju
     function scrollToNext() {
       const nextSection = document.querySelector('#about');
       if (nextSection) {
