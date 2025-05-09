@@ -112,25 +112,37 @@ footer {
 }
 
 /* === Responsive Design === */
+/* === Responsive Design === */
 @media (max-width: 768px) {
+  /* Hero Section */
   #hero {
-    height: auto;
-    padding: 4em 1em;
+    height: 100dvh; /* Dinamička visina za mobilne */
+    padding: 2em 1em; /* Manje paddinga na mobilnim uređajima */
   }
 
+  /* Hero Text */
   .hero-content h1 {
-    font-size: 2.2em;
+    font-size: 2.2em; /* Povećan font na mobilnim uređajima */
   }
 
   .hero-content p {
-    font-size: 1.1em;
+    font-size: 1.1em; /* Povećan font za bolju čitljivost */
   }
 
+  /* Matrix Canvas */
+  #matrix-canvas {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Sekcije */
   section {
     padding: 1.2em;
     margin: 1em;
+    max-width: 100%; /* Maksimalna širina sekcija na mobilnim uređajima */
   }
 }
+
 
 section#about p::first-line {
   font-weight: bold;
