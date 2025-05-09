@@ -60,6 +60,8 @@ ul {
 .hero-content {
   color: white;
   max-width: 90%;
+  z-index: 2; /* Ensures content is above the canvas */
+  margin-top: 20%; /* Increase to shift the content upward */
 }
 
 .hero-content h1,
@@ -107,6 +109,15 @@ footer {
 
 /* === Responsive === */
 @media (max-width: 768px) {
+  /* Adjusting the hero section content positioning */
+  #hero {
+    padding-top: 30%; /* Adjust top padding for phones */
+  }
+
+  .hero-content {
+    margin-top: 10%; /* Moving the text and arrow up */
+  }
+
   .hero-content h1 {
     font-size: 2em;
   }
@@ -117,6 +128,7 @@ footer {
 
   .scroll-arrow {
     font-size: 2em;
+    margin-top: 3rem; /* Move the scroll arrow further up */
   }
 
   section {
