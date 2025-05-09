@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
   <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>My Cybersecurity Portfolio</title>
+
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    html {
+      padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
+    }
+  </style>
 </head>
 <body>
 
- <section id="hero">
-  <canvas id="matrix-canvas"></canvas>
-  <div class="hero-content">
-    <h1>🧑‍💻 Hi, I'm Andrija</h1>
-    <p>Cybersecurity Enthusiast • Red & Blue Teaming • Networking • OS internals</p>
-  </div>
-  <div class="scroll-arrow">⬇️</div>
-</section>
-
+  <section id="hero">
+    <canvas id="matrix-canvas"></canvas>
+    <div class="hero-content">
+      <h1>🧑‍💻 Hi, I'm Andrija</h1>
+      <p>Cybersecurity Enthusiast • Red & Blue Teaming • Networking • OS internals</p>
+    </div>
+    <div class="scroll-arrow">⬇️</div>
+  </section>
 
   <section id="about">
     <h2>About Me</h2>
@@ -58,7 +65,6 @@
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
 
-    // Postavi punu širinu
     function setCanvasSize() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -92,9 +98,7 @@
     }
 
     setInterval(drawMatrix, 33);
-    window.addEventListener('resize', () => {
-      setCanvasSize();
-    });
+    window.addEventListener('resize', setCanvasSize);
   </script>
 
 </body>
