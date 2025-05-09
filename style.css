@@ -5,17 +5,17 @@ html, body {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
+  background-color: black; /* Crna pozadina tela */
 }
 
 body {
   font-family: 'Share Tech Mono', monospace;
   line-height: 1.6;
-  background-color: #f4f4f4;
-  color: #222;
+  color: #ddd; /* Svetlosiva za čitljiv tekst */
 }
 
 h1, h2 {
-  color: #333;
+  color: #00ffcc; /* Cyber-style zelena/plava */
 }
 
 a {
@@ -38,10 +38,7 @@ ul {
   position: relative;
   width: 100%;
   height: 100vh;
-  background-image: url('assets/hero-image.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,7 +57,7 @@ ul {
   z-index: 1;
 }
 
-/* Tekst iznad overlay-a */
+/* Tekst u hero sekciji */
 .hero-content {
   position: relative;
   z-index: 2;
@@ -68,35 +65,12 @@ ul {
   padding: 1em 2em;
 }
 
-/* Senka na tekstu */
 .hero-content h1,
 .hero-content p {
   text-shadow: 2px 2px 6px #000;
 }
 
-/* Strelica za skrolovanje */
-.scroll-arrow {
-  position: absolute;
-  bottom: 10%;
-  font-size: 2em;
-  color: white;
-  z-index: 2;
-  animation: bounce 1s infinite;
-}
-
-@keyframes bounce {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-/* === Matrix Canvas === */
+/* Matrix Canvas */
 #matrix-canvas {
   position: absolute;
   top: 0;
@@ -107,65 +81,64 @@ ul {
   pointer-events: none;
 }
 
-/* === Sekcije === */
+/* Strelica za skrol */
+.scroll-arrow {
+  position: absolute;
+  bottom: 5%;
+  font-size: 2.5em;
+  color: #0f0;
+  z-index: 2;
+  animation: bounce 1.2s infinite;
+}
+
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+  100% { transform: translateY(0); }
+}
+
+/* === Sekcije ispod === */
 section {
   padding: 2em;
-  background-color: #f8f8f8; /* Prijatnija boja pozadine */
+  background-color: #111; /* Tamna pozadina sekcija */
   margin: 1em auto;
   max-width: 800px;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-  font-size: 2em;
-  color: #333;
+  box-shadow: 0 4px 10px rgba(0, 255, 150, 0.1);
 }
 
 /* === Footer === */
 footer {
-  background-color: #111;
-  color: white;
+  background-color: #000;
+  color: #0f0;
   text-align: center;
   padding: 1em;
+  margin-top: 2em;
 }
 
 /* === Responsive Design === */
 @media (max-width: 768px) {
-  /* Hero Section */
   #hero {
-    height: 100vh; /* Puni ekran na mobilnim uređajima */
-    padding: 2em 1em; /* Manje paddinga na mobilnim uređajima */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 100vh;
+    padding: 2em 1em;
   }
 
-  /* Hero Text */
   .hero-content h1 {
-    font-size: 2.2em; /* Povećan font na mobilnim uređajima */
+    font-size: 2em;
   }
 
   .hero-content p {
-    font-size: 1.1em; /* Povećan font za bolju čitljivost */
+    font-size: 1.1em;
   }
 
-  /* Matrix Canvas */
-  #matrix-canvas {
-    width: 100%;
-    height: 100%;
-  }
-
-  /* Strelica za skrolovanje */
   .scroll-arrow {
-    bottom: 10%;
-    font-size: 2.5em;
+    bottom: 7%;
+    font-size: 2em;
   }
 
-  /* Sekcije */
   section {
     padding: 1.5em;
     margin: 1em;
-    max-width: 100%; /* Maksimalna širina sekcija na mobilnim uređajima */
+    max-width: 95%;
   }
 }
