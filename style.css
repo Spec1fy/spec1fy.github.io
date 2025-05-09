@@ -49,7 +49,7 @@ ul {
 #hero {
   display: flex;
   justify-content: center;
-  align-items: flex-start;  /* Changed from center to flex-start */
+  align-items: flex-start;
   text-align: center;
   padding: 2rem;
   flex-direction: column;
@@ -58,12 +58,24 @@ ul {
   min-height: 100vh;
 }
 
+/* Dodato: overlay za tamniji efekat pozadine u hero sekciji */
+#hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* zatamnjenje */
+  z-index: -1; /* ispod sadržaja hero sekcije */
+}
+
 .hero-content {
   text-align: center;
-  padding-top: 100px;  /* Adjusted padding for vertical spacing */
+  padding-top: 100px;
   max-width: 90%;
   margin: 0 auto;
-  z-index: 2;  /* Ensures content is above the canvas */
+  z-index: 2;
 }
 
 .hero-content h1 {
@@ -88,7 +100,7 @@ ul {
   color: #00ff99;
   animation: bounce 1.5s infinite;
   cursor: pointer;
-  margin-top: 3rem; /* Adjusted margin-top for the arrow */
+  margin-top: 3rem;
 }
 
 @keyframes bounce {
@@ -118,14 +130,13 @@ footer {
 
 /* === Responsive === */
 @media (max-width: 768px) {
-  /* Adjusting the hero section content positioning */
   #hero {
-    padding-top: 10%;  /* Further reduced padding */
+    padding-top: 10%;
     height: auto;
   }
 
   .hero-content {
-    margin-top: 15%; /* Adjusted margin-top to push text up */
+    margin-top: 15%;
   }
 
   .hero-content h1 {
@@ -138,7 +149,7 @@ footer {
 
   .scroll-arrow {
     font-size: 2.5em;
-    margin-top: 3.5rem; /* Adjust scroll arrow position */
+    margin-top: 3.5rem;
   }
 
   section {
@@ -150,17 +161,16 @@ footer {
 
 /* For Samsung Z Flip and similar devices */
 @media (max-width: 768px) and (device-width: 360px) and (device-height: 740px) {
-  /* Adjustments for Samsung Z Flip specific screen size */
   #hero {
-    padding-top: 5%; /* Further reduced padding to fit better */
+    padding-top: 5%;
   }
 
   .hero-content {
-    margin-top: 10%; /* Raise content more on specific device */
+    margin-top: 10%;
   }
 
   .scroll-arrow {
-    margin-top: 3rem; /* Adjust scroll arrow */
+    margin-top: 3rem;
   }
 }
 
