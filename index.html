@@ -2,66 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>My Cybersecurity Portfolio</title>
 
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Share Tech Mono', monospace;
-      background-color: black;
-      color: white;
-      overflow-x: hidden;
-    }
-
-    #matrix-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-      width: 100vw;
-      height: 100vh;
-      background: black;
-      pointer-events: none;
-    }
-
-    section {
-      padding: 100px 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .hero-content {
-      text-align: center;
-      padding-top: 100px;
-    }
-
-    .scroll-arrow {
-      text-align: center;
-      cursor: pointer;
-      font-size: 2rem;
-      margin-top: 20px;
-    }
-
-    h1, h2 {
-      color: #00ff00;
-    }
-
-    a {
-      color: #00ff00;
+    html {
+      padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
     }
   </style>
+
+  <!-- Google Analytics 4 Script -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DZS2J4WKC6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-DZS2J4WKC6');
+  </script>
+
 </head>
 <body>
 
-  <canvas id="matrix-canvas"></canvas>
-
   <section id="hero">
+    <canvas id="matrix-canvas"></canvas>
     <div class="hero-content">
       <h1>🧑‍💻 Hi, I'm Andrija</h1>
       <p>Cybersecurity Enthusiast • Red & Blue Teaming • Networking • OS internals</p>
@@ -71,7 +40,9 @@
 
   <section id="about">
     <h2>About Me</h2>
-    <p>I’m passionate about cybersecurity, especially red teaming and exploring how systems work under the hood. I also enjoy defensive techniques and building resilient systems. Currently leveling up via platforms like TryHackMe.</p>
+    <p>
+      I’m passionate about cybersecurity, especially red teaming and exploring how systems work under the hood. I also enjoy defensive techniques and building resilient systems. Currently leveling up via platforms like TryHackMe.
+    </p>
   </section>
 
   <section id="projects">
@@ -98,49 +69,53 @@
   </section>
 
   <footer>
-    <p style="text-align:center">Made with 💻 & ☕ | © Spec1fy 2025</p>
+    <p>Made with 💻 & ☕ | © Spec1fy 2025</p>
   </footer>
 
   <script>
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
 
-    let width = canvas.width = window.innerWidth;
-    let height = canvas.height = window.innerHeight;
+    // Funkcija za postavljanje veličine canvas-a
+    function setCanvasSize() {
+      canvas.width = window.innerWidth; // Podesi širinu na širinu ekrana
+      canvas.height = window.innerHeight; // Podesi visinu na visinu ekrana
+    }
+    setCanvasSize(); // Pozovi funkciju da postavi veličinu odmah na učitavanje stranice
 
-    let letters = 'アカサタナハマヤラワ0123456789'.split('');
-    let fontSize = 16;
-    let columns = Math.floor(width / fontSize);
-    let drops = new Array(columns).fill(1);
+    // Definicija karaktera za Matrix
+    const letters = 'アカサタナハマヤラワ0123456789'.split('');
+    const fontSize = window.innerWidth < 768 ? 22 : 16; // Veličina fonta zavisi od širine ekrana
+    const columns = Math.floor(canvas.width / fontSize); // Broj kolona na ekranu
+    const drops = Array(columns).fill(1); // Pozicija svakog padajućeg karaktera
 
+    // Funkcija za crtanje Matrix efekta
     function drawMatrix() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, width, height);
-
-      ctx.fillStyle = '#0f0';
-      ctx.font = `${fontSize}px monospace`;
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; // Poluprozirna crna pozadina za efekt
+      ctx.fillRect(0, 0, canvas.width, canvas.height); // Ispuni ekran sa pozadinom
+      ctx.fillStyle = '#0f0'; // Zelena boja za tekst
+      ctx.font = `${fontSize}px monospace`; // Font za Matrix efekat
 
       for (let i = 0; i < drops.length; i++) {
-        let text = letters[Math.floor(Math.random() * letters.length)];
-        let x = i * fontSize;
-        let y = drops[i] * fontSize;
+        const text = letters[Math.floor(Math.random() * letters.length)]; // Izbor nasumičnog karaktera
+        const x = i * fontSize; // X pozicija svakog karaktera
+        const y = drops[i] * fontSize; // Y pozicija svakog karaktera
 
-        ctx.fillText(text, x, y);
+        ctx.fillText(text, x, y); // Nacrtaj karakter na ekranu
 
-        if (y > height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
+        // Ako karakter pređe dno ekrana, ponovo počni sa vrha
+        if (y > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+
+        drops[i]++; // Povećaj poziciju padajućeg karaktera
       }
     }
 
-    setInterval(drawMatrix, 33);
+    setInterval(drawMatrix, 33); // Pozovi funkciju svakih 33ms za animaciju
+    window.addEventListener('resize', setCanvasSize); // Prilagodi canvas veličinu prilikom promena veličine ekrana
 
-    window.addEventListener('resize', () => {
-      width = canvas.width = window.innerWidth;
-      height = canvas.height = window.innerHeight;
-      columns = Math.floor(width / fontSize);
-      drops = new Array(columns).fill(1);
-    });
-
+    // Funkcija za skrolovanje na sledeću sekciju
     function scrollToNext() {
       const nextSection = document.querySelector('#about');
       if (nextSection) {
@@ -148,5 +123,6 @@
       }
     }
   </script>
+
 </body>
 </html>
