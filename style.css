@@ -62,7 +62,7 @@ ul {
   color: white;
   max-width: 90%;
   z-index: 2;
-  margin-top: 15%; /* Reduced margin for better positioning */
+  margin-top: 20%; /* Adjusted to 20% to push content higher */
 }
 
 .hero-content h1,
@@ -80,7 +80,7 @@ ul {
   color: #00ff99;
   animation: bounce 1.5s infinite;
   cursor: pointer;
-  margin-top: 4rem; /* Adjusted margin-top for the arrow */
+  margin-top: 3rem; /* Adjusted margin-top for the arrow */
 }
 
 @keyframes bounce {
@@ -112,12 +112,12 @@ footer {
 @media (max-width: 768px) {
   /* Adjusting the hero section content positioning */
   #hero {
-    padding-top: 5%;  /* Reduced padding to push content higher */
+    padding-top: 10%;  /* Further reduced padding */
     height: auto;
   }
 
   .hero-content {
-    margin-top: 10%; /* Slightly raised content on mobile devices */
+    margin-top: 15%; /* Adjusted margin-top to push text up */
   }
 
   .hero-content h1 {
@@ -129,8 +129,8 @@ footer {
   }
 
   .scroll-arrow {
-    font-size: 2em;
-    margin-top: 4rem; /* Adjust scroll arrow position */
+    font-size: 2.5em;
+    margin-top: 3.5rem; /* Adjust scroll arrow position */
   }
 
   section {
@@ -144,14 +144,14 @@ footer {
 @media (max-width: 768px) and (device-width: 360px) and (device-height: 740px) {
   /* Adjustments for Samsung Z Flip specific screen size */
   #hero {
-    padding-top: 8%; /* Reduced padding to fit better */
+    padding-top: 5%; /* Further reduced padding to fit better */
   }
 
   .hero-content {
-    margin-top: 15%; /* Raise content more on specific device */
+    margin-top: 10%; /* Raise content more on specific device */
   }
 
   .scroll-arrow {
-    margin-top: 3.5rem; /* Adjust scroll arrow */
+    margin-top: 3rem; /* Adjust scroll arrow */
   }
 }
