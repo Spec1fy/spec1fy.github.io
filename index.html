@@ -15,24 +15,37 @@
       padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0);
     }
 
-    /* Make sure the canvas doesn't block the text */
+    /* Matrix canvas */
     #matrix-canvas {
-      position: fixed; /* Use fixed to stay in place */
+      position: fixed;
       top: 0; 
       left: 0;
-      width: 100vw; /* Make canvas fill the entire width */
-      height: 100vh; /* Make canvas fill the entire height */
-      z-index: -1; /* Place canvas behind content */
-      pointer-events: none; /* Allow interaction with the content on top */
+      width: 100vw;
+      height: 100vh;
+      z-index: -1; /* Keeps canvas behind other content */
+      pointer-events: none; /* Prevent interaction with canvas */
+      opacity: 0.15; /* Reduce opacity for better visibility of the content */
+    }
+
+    /* Hero section */
+    #hero {
+      position: relative;
+      width: 100%;
+      height: 100vh; /* Set height for the hero section */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      background-color: black;
     }
 
     .hero-content {
       position: relative;
-      z-index: 2; /* Ensure the content stays above canvas */
+      z-index: 2; /* Ensures content is above the canvas */
       color: white;
       padding: 1em 2em;
-      text-align: center;
-      margin-top: 15%; /* Adjusted to position it more centered */
+      margin-top: 10%; /* Adjusted to place the content more centered */
     }
 
     .hero-content h1,
@@ -48,7 +61,7 @@
       transform: translateX(-50%);
       font-size: 2.5em;
       color: #00ff99;
-      z-index: 2;
+      z-index: 2; /* Ensures arrow is above the canvas */
       animation: bounce 1.5s infinite;
     }
 
@@ -139,46 +152,41 @@
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
 
-    // Funkcija za postavljanje veličine canvas-a
     function setCanvasSize() {
-      canvas.width = window.innerWidth; // Podesi širinu na širinu ekrana
-      canvas.height = window.innerHeight; // Podesi visinu na visinu ekrana
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     }
-    setCanvasSize(); // Pozovi funkciju da postavi veličinu odmah na učitavanje stranice
+    setCanvasSize();
 
-    // Definicija karaktera za Matrix
     const letters = 'アカサタナハマヤラワ0123456789'.split('');
-    const fontSize = window.innerWidth < 768 ? 22 : 16; // Veličina fonta zavisi od širine ekrana
-    const columns = Math.floor(canvas.width / fontSize); // Broj kolona na ekranu
-    const drops = Array(columns).fill(1); // Pozicija svakog padajućeg karaktera
+    const fontSize = window.innerWidth < 768 ? 22 : 16;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops = Array(columns).fill(1);
 
-    // Funkcija za crtanje Matrix efekta
     function drawMatrix() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; // Poluprozirna crna pozadina za efekt
-      ctx.fillRect(0, 0, canvas.width, canvas.height); // Ispuni ekran sa pozadinom
-      ctx.fillStyle = '#0f0'; // Zelena boja za tekst
-      ctx.font = `${fontSize}px monospace`; // Font za Matrix efekat
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#0f0';
+      ctx.font = `${fontSize}px monospace`;
 
       for (let i = 0; i < drops.length; i++) {
-        const text = letters[Math.floor(Math.random() * letters.length)]; // Izbor nasumičnog karaktera
-        const x = i * fontSize; // X pozicija svakog karaktera
-        const y = drops[i] * fontSize; // Y pozicija svakog karaktera
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
 
-        ctx.fillText(text, x, y); // Nacrtaj karakter na ekranu
+        ctx.fillText(text, x, y);
 
-        // Ako karakter pređe dno ekrana, ponovo počni sa vrha
         if (y > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
 
-        drops[i]++; // Povećaj poziciju padajućeg karaktera
+        drops[i]++;
       }
     }
 
-    setInterval(drawMatrix, 33); // Pozovi funkciju svakih 33ms za animaciju
-    window.addEventListener('resize', setCanvasSize); // Prilagodi canvas veličinu prilikom promena veličine ekrana
+    setInterval(drawMatrix, 33);
+    window.addEventListener('resize', setCanvasSize);
 
-    // Funkcija za skrolovanje na sledeću sekciju
     function scrollToNext() {
       const nextSection = document.querySelector('#about');
       if (nextSection) {
