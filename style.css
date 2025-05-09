@@ -37,7 +37,8 @@ ul {
 /* === Canvas === */
 #matrix-canvas {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
   z-index: -1;
@@ -48,7 +49,7 @@ ul {
 #hero {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;  /* Changed from center to flex-start */
   text-align: center;
   padding: 2rem;
   flex-direction: column;
@@ -60,8 +61,8 @@ ul {
 .hero-content {
   color: white;
   max-width: 90%;
-  z-index: 2; /* Ensures content is above the canvas */
-  margin-top: 20%; /* Adjusted to 20% to push content higher */
+  z-index: 2;
+  margin-top: 15%; /* Reduced margin for better positioning */
 }
 
 .hero-content h1,
@@ -79,7 +80,7 @@ ul {
   color: #00ff99;
   animation: bounce 1.5s infinite;
   cursor: pointer;
-  margin-top: 5rem; /* Move arrow further down for better positioning */
+  margin-top: 4rem; /* Adjusted margin-top for the arrow */
 }
 
 @keyframes bounce {
@@ -111,12 +112,12 @@ footer {
 @media (max-width: 768px) {
   /* Adjusting the hero section content positioning */
   #hero {
-    padding-top: 10%; /* Further reduce the padding-top */
+    padding-top: 5%;  /* Reduced padding to push content higher */
     height: auto;
   }
 
   .hero-content {
-    margin-top: 20%; /* Move text higher */
+    margin-top: 10%; /* Slightly raised content on mobile devices */
   }
 
   .hero-content h1 {
@@ -128,7 +129,7 @@ footer {
   }
 
   .scroll-arrow {
-    font-size: 2.5em;
+    font-size: 2em;
     margin-top: 4rem; /* Adjust scroll arrow position */
   }
 
@@ -141,16 +142,16 @@ footer {
 
 /* For Samsung Z Flip and similar devices */
 @media (max-width: 768px) and (device-width: 360px) and (device-height: 740px) {
-  /* Additional adjustments for this specific device */
+  /* Adjustments for Samsung Z Flip specific screen size */
   #hero {
-    padding-top: 5%; /* Less padding at the top */
+    padding-top: 8%; /* Reduced padding to fit better */
   }
 
   .hero-content {
-    margin-top: 20%; /* More space above the content */
+    margin-top: 15%; /* Raise content more on specific device */
   }
 
   .scroll-arrow {
-    margin-top: 4rem; /* Adjust scroll arrow position */
+    margin-top: 3.5rem; /* Adjust scroll arrow */
   }
 }
