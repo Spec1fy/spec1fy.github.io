@@ -45,6 +45,7 @@ ul {
   text-align: center;
   overflow: hidden;
   background-color: black;
+  padding-top: 0;
 }
 
 /* Matrix background canvas */
@@ -123,7 +124,7 @@ footer {
 @media (max-width: 768px) {
   #hero {
     height: 100vh;
-    padding: 2em 1em;
+    padding-top: 5vh; /* podignut ceo sadržaj više */
   }
 
   .hero-content h1 {
@@ -135,7 +136,7 @@ footer {
   }
 
   .scroll-arrow {
-    bottom: 10%; /* podignuto više na telefonima */
+    bottom: 14%; /* još više podignuto */
     font-size: 2em;
   }
 
