@@ -61,7 +61,7 @@ ul {
   color: white;
   max-width: 90%;
   z-index: 2; /* Ensures content is above the canvas */
-  margin-top: 30%; /* Increase to shift the content upward */
+  margin-top: 20%; /* Adjusted to 20% to push content higher */
 }
 
 .hero-content h1,
@@ -111,12 +111,12 @@ footer {
 @media (max-width: 768px) {
   /* Adjusting the hero section content positioning */
   #hero {
-    padding-top: 20%; /* Adjust top padding for phones */
+    padding-top: 10%; /* Further reduce the padding-top */
     height: auto;
   }
 
   .hero-content {
-    margin-top: 25%; /* Moving the text and arrow up */
+    margin-top: 20%; /* Move text higher */
   }
 
   .hero-content h1 {
@@ -129,7 +129,7 @@ footer {
 
   .scroll-arrow {
     font-size: 2.5em;
-    margin-top: 4rem; /* Move the scroll arrow further up */
+    margin-top: 4rem; /* Adjust scroll arrow position */
   }
 
   section {
@@ -143,7 +143,7 @@ footer {
 @media (max-width: 768px) and (device-width: 360px) and (device-height: 740px) {
   /* Additional adjustments for this specific device */
   #hero {
-    padding-top: 15%; /* Less padding at the top */
+    padding-top: 5%; /* Less padding at the top */
   }
 
   .hero-content {
