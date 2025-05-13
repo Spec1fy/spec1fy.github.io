@@ -1,11 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code&display=swap');
-
 body {
   margin: 0;
   padding: 0;
   background: black;
-  color: #ccffcc; /* mekša zelena */
-  font-family: 'Fira Code', monospace;
+  color: #0f0;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 #matrix-canvas {
@@ -14,6 +12,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 0;
 }
 
 .hero {
@@ -27,83 +26,69 @@ body {
   text-align: center;
   padding: 2rem;
 }
-
 .hero h1 {
   margin: 0;
   font-size: 3rem;
-  text-shadow: 0 0 5px #00ff00;
 }
-
 .hero p {
   margin: 1rem 0;
   font-size: 1.2rem;
-  text-shadow: 0 0 3px #00ff00;
 }
 
-/* Strelica */
 .scroll-arrow {
-  margin-top: 2rem;
   width: 0;
   height: 0;
+  margin-top: 2rem;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-top: 14px solid #66ff66;
+  border-top: 12px solid #0f0;
   cursor: pointer;
-  transition: transform 0.3s ease;
 }
 
-.scroll-arrow:hover {
-  transform: translateY(5px);
-}
-
-/* Sekcije */
 section {
   position: relative;
   z-index: 1;
   padding: 4rem 2rem;
-  color: #ccffcc;
-  background: rgba(0, 0, 0, 0.6); /* manja tamnina */
+  color: white;
+  background: rgba(0, 0, 0, 0.8);
 }
-
 section h2 {
   margin-top: 0;
-  text-shadow: 0 0 5px #00ff00;
 }
 
-/* Linkovi */
-a {
-  color: #66ff66;
-  text-decoration: none;
+section p {
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-size: 1.05rem;
+}
+
+strong {
+  color: #99ff99;
   text-shadow: 0 0 4px #00ff00;
 }
 
-a:hover {
-  color: #00ffcc;
-  text-shadow: 0 0 8px #00ffcc;
+/* Contact Links List */
+ul {
+  list-style: disc inside;
 }
 
-/* Footer */
+/* Footer fix */
 footer {
+  position: relative;
+  z-index: 1;
   text-align: center;
   padding: 1rem;
+  color: #0f0;
+  background: rgba(0, 0, 0, 0.9);
   font-size: 0.9rem;
-  color: #99ff99;
-  background: black;
-  text-shadow: 0 0 2px #00ff00;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-/* Responsivnost */
+/* Responsive */
 @media (max-width: 768px) {
   .hero {
     justify-content: flex-start;
     padding-top: 10vh;
-  }
-
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
   }
 }
