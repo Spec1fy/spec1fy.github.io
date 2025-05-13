@@ -2,72 +2,114 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Andrija - Portfolio</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>My Cybersecurity Portfolio</title>
+
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Google Analytics 4 Script -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DZS2J4WKC6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-DZS2J4WKC6');
+  </script>
 </head>
 <body>
-  <canvas id="matrix-canvas"></canvas>
-  <header class="hero">
-    <h1>Hi, I'm Andrija</h1>
-    <p>Opis (tagline, npr. full-stack developer).</p>
-    <div class="scroll-arrow"></div>
-  </header>
+
+  <section id="hero">
+    <canvas id="matrix-canvas"></canvas>
+    <div class="hero-content">
+      <h1>🧑‍💻 Hi, I'm Andrija</h1>
+      <p>Cybersecurity Enthusiast • Red & Blue Teaming • Networking • OS internals</p>
+    </div>
+    <div class="scroll-arrow" onclick="scrollToNext()">⬇</div>
+  </section>
 
   <section id="about">
-    <h2>About</h2>
-    <p>Kratak opis... (ovde ide sadržaj odeljka About).</p>
+    <h2>About Me</h2>
+    <p>
+      I’m passionate about cybersecurity, especially red teaming and exploring how systems work under the hood. I also enjoy defensive techniques and building resilient systems. Currently leveling up via platforms like TryHackMe.
+    </p>
+  </section>
+
+  <section id="projects">
+    <h2>Labs & Links</h2>
+    <ul>
+      <li><a href="https://tryhackme.com/p/Spec1fy" target="_blank">My TryHackMe Profile</a></li>
+      <li><a href="#">Red Team Lab 1 - Coming Soon</a></li>
+      <li><a href="#">Blue Team Detection Project - Coming Soon</a></li>
+    </ul>
   </section>
 
   <section id="skills">
     <h2>Skills</h2>
-    <p>Kratki opis veština...</p>
+    <p>Linux, Metasploit, Wireshark, Burp Suite, Nmap, OSINT, Splunk, Windows Internals, Networking</p>
   </section>
 
   <section id="contact">
-    <h2>Contact</h2>
-    <p>Kratak opis kontakt informacija...</p>
+    <h2>Contact & Links</h2>
+    <ul>
+      <li><a href="https://github.com/Spec1fy" target="_blank">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/andrija-simi%C4%87-257781320/" target="_blank">LinkedIn</a></li>
+      <li><a href="mailto:andrijal2@sbb.rs">Email Me</a></li>
+    </ul>
   </section>
 
+  <footer>
+    <p>Made with 💻 & ☕ | © Spec1fy 2025</p>
+  </footer>
+
   <script>
-    // Matrix rain effect script
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    const cols = Math.floor(canvas.width / 20) + 1;
-    let ypos = Array(cols).fill(0);
 
-    function matrix() {
-      // Resize canvas on window resize
-      if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-      // Translucent background (fade effect)
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      // Draw characters
-      ctx.fillStyle = '#0f0';
-      ctx.font = '20pt monospace';
-      ypos.forEach((y, index) => {
-        const text = String.fromCharCode(0x30A0 + Math.random() * 97);
-        const x = index * 20;
-        ctx.fillText(text, x, y);
-        // Reset at bottom
-        if (y > canvas.height && Math.random() > 0.975) {
-          ypos[index] = 0;
-        } else {
-          ypos[index] = y + 20;
-        }
-      });
-    }
-
-    setInterval(matrix, 50);
-    window.addEventListener('resize', () => {
+    function setCanvasSize() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-    });
+    }
+    setCanvasSize();
+
+    const letters = 'アカサタナハマヤラワ0123456789'.split('');
+    const fontSize = window.innerWidth < 768 ? 22 : 16;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops = Array(columns).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#0f0';
+      ctx.font = `${fontSize}px monospace`;
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        const x = i * fontSize;
+        const y = drops[i] * fontSize;
+
+        ctx.fillText(text, x, y);
+
+        if (y > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 33);
+    window.addEventListener('resize', setCanvasSize);
+
+    function scrollToNext() {
+      const nextSection = document.querySelector('#about');
+      if (nextSection) {
+        nextSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   </script>
+
 </body>
 </html>
