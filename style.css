@@ -37,6 +37,9 @@ body {
 .hero p {
   margin: 1rem 0;
   font-size: 1.2rem;
+  font-weight: bold;
+  color: #99ff99;
+  text-shadow: 0 0 6px #00ff00, 0 0 12px #006600;
 }
 
 #about {
