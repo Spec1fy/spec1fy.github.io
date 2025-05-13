@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Andrija - Portfolio</title>
@@ -13,13 +12,13 @@
   <header class="hero">
     <h1>🧑‍💻Hi, I'm Andrija</h1>
     <p>Cybersecurity Enthusiast • Red & Blue Teaming • Networking • OS internals</p>
-    <div class="scroll-arrow" onclick="scrollToNext()"></div>
+    <div class="scroll-arrow" onclick="scrollToNext()">⬇</div>
   </header>
 
   <section id="about">
     <h2>About</h2>
     <p>
-      I’m passionate about cybersecurity, especially red teaming and exploring how systems work under the hood. I also enjoy defensive techniques and building resilient systems. Currently leveling up via platforms like TryHackMe.
+      I’m passionate about <strong>cybersecurity</strong>, especially <strong>red teaming</strong> and exploring how systems work under the hood. I also enjoy <strong>defensive techniques</strong> and building <strong>resilient systems</strong>. Currently leveling up via platforms like <strong>TryHackMe</strong>.
     </p>
   </section>
 
@@ -51,7 +50,13 @@
   </footer>
 
   <script>
-    // Matrix rain effect
+    function scrollToNext() {
+      const nextSection = document.querySelector("section");
+      if (nextSection) {
+        nextSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
@@ -81,19 +86,10 @@
     }
 
     setInterval(matrix, 50);
-
     window.addEventListener('resize', () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     });
-
-    // Scroll to next section
-    function scrollToNext() {
-      const nextSection = document.querySelector("section");
-      if (nextSection) {
-        nextSection.scrollIntoView({ behavior: "smooth" });
-      }
-    }
   </script>
 </body>
 </html>
