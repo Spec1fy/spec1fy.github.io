@@ -8,10 +8,11 @@
 </head>
 <body>
   <canvas id="matrix-canvas"></canvas>
+
   <header class="hero">
     <h1>🧑‍💻Hi, I'm Andrija</h1>
     <p>Cybersecurity Enthusiast • Red & Blue Teaming • Networking • OS internals</p>
-    <div class="scroll-arrow" onclick="scrollToNext()">⬇</div>
+    <div class="scroll-arrow" onclick="scrollToNext()"></div>
   </header>
 
   <section id="about">
@@ -43,12 +44,13 @@
       <li><a href="mailto:andrijal2@sbb.rs">Email Me</a></li>
     </ul>
   </section>
+
   <footer>
     <p>Made with 💻 & ☕ | © Spec1fy 2025</p>
   </footer>
 
   <script>
-    // Matrix rain effect script
+    // Matrix rain effect
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth;
@@ -57,22 +59,18 @@
     let ypos = Array(cols).fill(0);
 
     function matrix() {
-      // Resize canvas on window resize
       if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
       }
-      // Translucent background (fade effect)
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      // Draw characters
       ctx.fillStyle = '#0f0';
       ctx.font = '20pt monospace';
       ypos.forEach((y, index) => {
         const text = String.fromCharCode(0x30A0 + Math.random() * 97);
         const x = index * 20;
         ctx.fillText(text, x, y);
-        // Reset at bottom
         if (y > canvas.height && Math.random() > 0.975) {
           ypos[index] = 0;
         } else {
@@ -82,10 +80,19 @@
     }
 
     setInterval(matrix, 50);
+
     window.addEventListener('resize', () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     });
+
+    // Scroll to next section
+    function scrollToNext() {
+      const nextSection = document.querySelector("section");
+      if (nextSection) {
+        nextSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   </script>
 </body>
 </html>
