@@ -29,10 +29,30 @@ body {
 .hero h1 {
   margin: 0;
   font-size: 3rem;
+  font-family: 'Courier New', Courier, monospace;
+  letter-spacing: 2px;
+  color: #99ff99;
+  text-shadow: 0 0 6px #00ff00;
 }
 .hero p {
   margin: 1rem 0;
   font-size: 1.2rem;
+}
+
+#about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#about p {
+  margin-top: 1rem;
+  line-height: 1.7;
+  font-size: 1.05rem;
+  color: #d0ffd0;
 }
 
 .scroll-arrow {
@@ -64,16 +84,16 @@ section p {
 }
 
 strong {
-  color: #99ff99;
-  text-shadow: 0 0 4px #00ff00;
+  color: #00ff88;
+  text-shadow: 0 0 4px #33ff33;
 }
 
-/* Contact Links List */
+
 ul {
   list-style: disc inside;
 }
 
-/* Footer fix */
+
 footer {
   position: relative;
   z-index: 1;
@@ -85,7 +105,7 @@ footer {
   font-family: 'Courier New', Courier, monospace;
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .hero {
     justify-content: flex-start;
