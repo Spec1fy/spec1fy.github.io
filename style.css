@@ -1,65 +1,169 @@
-/* style.css */
-body {
+/* === Reset & Globals === */
+* {
   margin: 0;
   padding: 0;
-  background: black;
-  color: #0f0;
-  font-family: Arial, sans-serif;
+  box-sizing: border-box;
 }
 
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  background-color: black;
+  font-family: 'Share Tech Mono', monospace;
+  line-height: 1.6;
+  color: #ddd;
+  scroll-behavior: smooth;
+}
+
+h1, h2 {
+  color: #00ffcc;
+}
+
+a {
+  color: #00ccff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+a:hover {
+  color: #0099cc;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* === Canvas === */
 #matrix-canvas {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.15;
 }
 
-.hero {
-  position: relative;
-  z-index: 1;
+/* === Hero Section === */
+#hero {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 100vh;
+  align-items: flex-start;
   text-align: center;
   padding: 2rem;
-}
-.hero h1 {
-  margin: 0;
-  font-size: 3rem;
-}
-.hero p {
-  margin: 1rem 0;
-  font-size: 1.2rem;
-}
-
-/* CSS trougao (strelica) */
-.scroll-arrow {
-  width: 0;
-  height: 0;
-  margin-top: 2rem;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 12px solid #0f0;
-}
-
-section {
+  flex-direction: column;
   position: relative;
   z-index: 1;
-  padding: 4rem 2rem;
-  color: white;
-  background: rgba(0, 0, 0, 0.8);
-}
-section h2 {
-  margin-top: 0;
+  min-height: 100vh;
 }
 
-/* Prilagođavanje za ekrane do 768px */
+#hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+}
+
+.hero-content {
+  text-align: center;
+  padding-top: 100px;
+  max-width: 90%;
+  margin: 0 auto;
+  z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: 2rem;
+  color: #00ffc3;
+  margin-bottom: 1rem;
+  word-wrap: break-word;
+}
+
+.hero-content p {
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.scroll-arrow {
+  font-size: 2.5em;
+  color: #00ff99;
+  animation: bounce 1.5s infinite;
+  cursor: pointer;
+  margin-top: 3rem;
+}
+
+@keyframes bounce {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(10px); }
+  100% { transform: translateY(0); }
+}
+
+/* === Section Styling === */
+section {
+  padding: 2em;
+  background-color: #111;
+  margin: 1em auto;
+  max-width: 800px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 255, 150, 0.1);
+}
+
+/* === Footer === */
+footer {
+  background-color: #000;
+  color: #0f0;
+  text-align: center;
+  padding: 1em;
+  margin-top: 2em;
+}
+
+/* === Responsive === */
 @media (max-width: 768px) {
-  .hero {
-    justify-content: flex-start;
-    padding-top: 10vh;
+  #hero {
+    padding-top: 10%;
+    height: auto;
+  }
+
+  .hero-content {
+    margin-top: 15%;
+  }
+
+  .hero-content h1 {
+    font-size: 2em;
+  }
+
+  .hero-content p {
+    font-size: 1.1em;
+  }
+
+  .scroll-arrow {
+    font-size: 2.5em;
+    margin-top: 3.5rem;
+  }
+
+  section {
+    padding: 1.5em;
+    margin: 1em;
+    max-width: 95%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+
+  .hero-content p {
+    font-size: 0.95rem;
   }
 }
