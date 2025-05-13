@@ -68,13 +68,13 @@ body {
 section {
   display: flex;
   flex-direction: column;
-  align-items: center;  /* Centriranje sadržaja u sekciji */
+  align-items: center;  
   justify-content: center;
   z-index: 1;
   padding: 4rem 2rem;
   color: white;
-  background: rgba(0, 0, 0, 0.95); /* manje providno */
-  text-align: center;  /* Takođe za centriranje unutar sekcija */
+  background: black; 
+  text-align: center;  
 }
 
 }
@@ -106,7 +106,7 @@ section a {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Hover efekat za linkove */
+
 section a:hover {
   background-color: #00cc66;
   transform: scale(1.05);
