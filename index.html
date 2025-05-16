@@ -12,7 +12,7 @@
   <canvas id="matrix-canvas"></canvas>
 
   <header class="hero">
-    <h1></h1><span class="cursor">|</span>
+    <h1><span id="typed-text"></span><span class="cursor">|</span></h1>
     <p></p>
     <div class="scroll-arrow" onclick="scrollToNext()"></div>
   </header>
@@ -109,25 +109,32 @@
 
     function writeOut() {
       let delay = 0;
+      const typedText = document.getElementById("typed-text");
+      const cursor = document.querySelector(".cursor");
 
       for (let i = 0; i < welcome.length; i++) {
         const character = welcome[i];
         setTimeout(() => {
-          welcome_obj.textContent += character;
-        }, delay);
+          typedText.textContent += character;
+      }, delay);
         delay += delay_time;
       }
 
-      delay += 400;
+  delay += 400;
 
-      for (let i = 0; i < subtext.length; i++) {
-        const character = subtext[i];
-        setTimeout(() => {
-          subtext_obj.textContent += character;
-        }, delay);
-        delay += delay_time / 2;
-      }
-    }
+  for (let i = 0; i < subtext.length; i++) {
+    const character = subtext[i];
+    setTimeout(() => {
+      subtext_obj.textContent += character;
+    }, delay);
+    delay += delay_time / 2;
+  }
+
+  setTimeout(() => {
+    if (cursor) cursor.remove();
+  }, delay + 300);
+}
+
 
     function onPageLoad() {
       setTimeout(writeOut, 300);
