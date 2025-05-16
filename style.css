@@ -26,6 +26,7 @@ body {
   text-align: center;
   padding: 2rem;
 }
+
 .hero h1 {
   margin: 0;
   font-size: 3rem;
@@ -33,13 +34,28 @@ body {
   letter-spacing: 2px;
   color: #99ff99;
   text-shadow: 0 0 6px #00ff00;
+  display: inline;
 }
+
 .hero p {
   margin: 1rem 0;
   font-size: 1.2rem;
   font-weight: bold;
   color: #99ff99;
   text-shadow: 0 0 6px #00ff00, 0 0 12px #006600;
+}
+
+.cursor {
+  display: inline-block;
+  color: #99ff99;
+  font-size: 2.5rem;
+  animation: blink 1s step-start infinite;
+  font-weight: bold;
+  margin-left: 3px;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
 }
 
 #about {
@@ -71,16 +87,15 @@ body {
 section {
   display: flex;
   flex-direction: column;
-  align-items: center;  
+  align-items: center;
   position: relative;
   justify-content: center;
   z-index: 1;
   padding: 4rem 2rem;
-  color: white; 
-  text-align: center;  
+  color: white;
+  text-align: center;
 }
 
-}
 section h2 {
   margin-top: 0;
 }
@@ -109,7 +124,6 @@ section a {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-
 section a:hover {
   background-color: #00cc66;
   transform: scale(1.05);
@@ -119,7 +133,6 @@ section a:hover {
 ul {
   list-style: disc inside;
 }
-
 
 footer {
   position: relative;
@@ -131,7 +144,6 @@ footer {
   font-size: 0.9rem;
   font-family: 'Courier New', Courier, monospace;
 }
-
 
 @media (max-width: 768px) {
   .hero {
