@@ -162,10 +162,13 @@ footer {
 }
 
 .content-box {
-  background: rgba(0, 0, 0, 0.75);
-  padding: 2rem;
-  border-radius: 10px;
-  max-width: 800px;
-  width: 100%;
-  margin-top: 1.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
+
+.content-box.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
