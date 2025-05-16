@@ -4,19 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Andrija - Portfolio</title>
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
 </head>
 <body onload="onPageLoad()">
   <canvas id="matrix-canvas"></canvas>
 
-<header class="hero">
-  <h1><span id="typed-title"></span><span class="cursor" id="cursor-h1">|</span></h1>
-  <p><span id="typed-subtext"></span><span class="cursor" id="cursor-p" style="display: none;">|</span></p>
-  <div class="scroll-arrow" onclick="scrollToNext()"></div>
-</header>
-
+  <header class="hero">
+    <h1><span id="typed-title"></span><span class="cursor" id="cursor-h1">|</span></h1>
+    <p><span id="typed-subtext"></span><span class="cursor" id="cursor-p" style="display: none;">|</span></p>
+    <div class="scroll-arrow" onclick="scrollToNext()"></div>
+  </header>
 
   <section id="about">
     <h2>About</h2>
@@ -102,56 +101,49 @@
       canvas.height = window.innerHeight;
     });
 
-    const welcome = "Hi, I'm Andrija";
-    const subtext = "Cybersecurity Enthusiast • Red & Blue Teaming • Networking • OS internals";
-    const welcome_obj = document.querySelector(".hero h1");
-    const subtext_obj = document.querySelector(".hero p");
-    const delay_time = 70;
-
     function writeOut() {
-    const welcome = "Hi, I'm Andrija";
-    const subtext = "Cybersecurity Enthusiast • Red & Blue Teaming • Networking • OS internals";
+      const welcome = "Hi, I'm Andrija";
+      const subtext = "Cybersecurity Enthusiast • Red & Blue Teaming • Networking • OS internals";
 
-    const titleEl = document.getElementById("typed-title");
-    const subtextEl = document.getElementById("typed-subtext");
+      const titleEl = document.getElementById("typed-title");
+      const subtextEl = document.getElementById("typed-subtext");
 
-    const cursorH1 = document.getElementById("cursor-h1");
-    const cursorP = document.getElementById("cursor-p");
+      const cursorH1 = document.getElementById("cursor-h1");
+      const cursorP = document.getElementById("cursor-p");
+      const scrollArrow = document.querySelector(".scroll-arrow");
 
-    let delay = 0;
+      let delay = 0;
 
- 
-    for (let i = 0; i < welcome.length; i++) {
+      // Kucaj naslov
+      for (let i = 0; i < welcome.length; i++) {
+        setTimeout(() => {
+          titleEl.textContent += welcome[i];
+        }, delay);
+        delay += 70;
+      }
+
+      // Nakon naslova prikaži cursor za p i sakrij cursor za h1, ali ne menja se veličina naslova!
+      delay += 300;
       setTimeout(() => {
-        titleEl.textContent += welcome[i];
+        cursorH1.style.display = "none";
+        cursorP.style.display = "inline-block";
       }, delay);
-      delay += 70;
-    }
 
+      // Kucaj podnaslov
+      delay += 200;
+      for (let i = 0; i < subtext.length; i++) {
+        setTimeout(() => {
+          subtextEl.textContent += subtext[i];
+        }, delay);
+        delay += 35;
+      }
 
-    delay += 300;
-    setTimeout(() => {
-      document.querySelector(".hero h1").style.fontSize = "2rem";
-      cursorH1.style.display = "none";
-      cursorP.style.display = "inline-block";
-    }, delay);
-
-
-    delay += 200;
-    for (let i = 0; i < subtext.length; i++) {
+      // Nakon što se sve ispise, ukloni cursor i strelicu
       setTimeout(() => {
-        subtextEl.textContent += subtext[i];
-      }, delay);
-      delay += 35;
+        cursorP.remove();
+        scrollArrow.style.display = "none";
+      }, delay + 300);
     }
-
-
-    setTimeout(() => {
-      cursorP.remove();
-    }, delay + 300);
-  }
-
-
 
     function onPageLoad() {
       setTimeout(writeOut, 200);
