@@ -89,7 +89,16 @@ body {
   border-right: 8px solid transparent;
   border-top: 12px solid #0f0;
   cursor: pointer;
+  opacity: 0; 
+  transition: opacity 0.3s ease;
 }
+
+
+@keyframes glitch-flicker {
+  0%, 20%, 40%, 60%, 80%, 100% { opacity: 1; transform: translateY(0); }
+  10%, 30%, 50%, 70%, 90% { opacity: 0; transform: translateY(5px); }
+}
+
 
 section {
   display: flex;
