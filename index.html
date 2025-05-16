@@ -176,6 +176,11 @@
     function onPageLoad() {
       setTimeout(writeOut, 200);
     }
+        window.addEventListener('scroll', () => {
+          const scrollY = window.scrollY;
+          canvas.style.transform = `translateY(${scrollY * 0.3}px)`;
+        });
+
   </script>
 </body>
 </html>
