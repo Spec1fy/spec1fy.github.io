@@ -114,7 +114,7 @@
 
       let delay = 0;
 
-      // Kucaj naslov
+     
       for (let i = 0; i < welcome.length; i++) {
         setTimeout(() => {
           titleEl.textContent += welcome[i];
@@ -122,14 +122,13 @@
         delay += 70;
       }
 
-      // Nakon naslova prikaži cursor za p i sakrij cursor za h1, ali ne menja se veličina naslova!
       delay += 300;
       setTimeout(() => {
         cursorH1.style.display = "none";
         cursorP.style.display = "inline-block";
       }, delay);
 
-      // Kucaj podnaslov
+     
       delay += 200;
       for (let i = 0; i < subtext.length; i++) {
         setTimeout(() => {
@@ -138,12 +137,21 @@
         delay += 35;
       }
 
-      // Nakon što se sve ispise, ukloni cursor i strelicu
+      
       setTimeout(() => {
         cursorP.remove();
-        scrollArrow.style.display = "none";
-      }, delay + 300);
-    }
+
+  // Pokazi strelicu glitch efektom
+        scrollArrow.style.opacity = "1";
+        scrollArrow.style.animation = "glitch-flicker 0.6s ease-in-out 3";
+
+  // Nakon animacije, ukloni animaciju da strelica ostane statična
+        setTimeout(() => {
+        scrollArrow.style.animation = "";
+        } , 0.6 * 3 * 1000); // trajanje animacije * broj ponavljanja * 1000ms
+
+    }, delay + 300);
+
 
     function onPageLoad() {
       setTimeout(writeOut, 200);
