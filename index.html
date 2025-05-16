@@ -5,38 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Andrija - Portfolio</title>
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
 </head>
-<body>
-
-  <!-- Google Analytics 4 Script -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DZS2J4WKC6"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-DZS2J4WKC6');
-  </script>
+<body onload="onPageLoad()">
   <canvas id="matrix-canvas"></canvas>
 
   <header class="hero">
-    <h1>Hi, I'm Andrija</h1>
-    <p>Cybersecurity Enthusiast • Red & Blue Teaming • Networking • OS internals</p>
+    <h1></h1><span class="cursor">|</span>
+    <p></p>
     <div class="scroll-arrow" onclick="scrollToNext()"></div>
   </header>
 
- <section id="about">
-  <h2>About</h2>
-  <div class="content-box">
-    <p>
-      I’m passionate about <strong>cybersecurity</strong>, especially <strong>red teaming</strong> and exploring how systems work under the hood. I also enjoy <strong>defensive techniques</strong> and building <strong>resilient systems</strong>. Currently leveling up via platforms like <strong>TryHackMe</strong>.
-    </p>
-  </div>
-</section>
+  <section id="about">
+    <h2>About</h2>
+    <div class="content-box">
+      <p>
+        I’m passionate about <strong>cybersecurity</strong>, especially <strong>red teaming</strong> and exploring how systems work under the hood. I also enjoy <strong>defensive techniques</strong> and building <strong>resilient systems</strong>. Currently leveling up via platforms like <strong>TryHackMe</strong>.
+      </p>
+    </div>
+  </section>
 
-<section id="projects">
+  <section id="projects">
     <h2>Labs & Links</h2>
     <div class="content-box">
       <ul>
@@ -45,26 +35,25 @@
         <li><a href="#">Blue Team Detection Project - Coming Soon</a></li>
       </ul>
     </div>
-</section>
+  </section>
 
-  
   <section id="skills">
-  <h2>Skills</h2>
-  <div class="content-box">
-    <p>Linux, Metasploit, Wireshark, Burp Suite, Nmap, OSINT, Splunk, Windows Internals, Networking, Grafana</p>
-  </div>
-</section>
+    <h2>Skills</h2>
+    <div class="content-box">
+      <p>Linux, Metasploit, Wireshark, Burp Suite, Nmap, OSINT, Splunk, Windows Internals, Networking, Grafana</p>
+    </div>
+  </section>
 
   <section id="contact">
-  <h2>Contact & Links</h2>
-  <div class="content-box">
-    <ul>
-      <li><a href="https://github.com/Spec1fy" target="_blank">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/andrija-simi%C4%87-257781320/" target="_blank">LinkedIn</a></li>
-      <li><a href="mailto:andrijal2@sbb.rs">Email Me</a></li>
-    </ul>
-  </div>
-</section>
+    <h2>Contact & Links</h2>
+    <div class="content-box">
+      <ul>
+        <li><a href="https://github.com/Spec1fy" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/andrija-simi%C4%87-257781320/" target="_blank">LinkedIn</a></li>
+        <li><a href="mailto:andrijal2@sbb.rs">Email Me</a></li>
+      </ul>
+    </div>
+  </section>
 
   <footer>
     <p>Made with 💻 & ☕ | © Spec1fy 2025</p>
@@ -111,6 +100,38 @@
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     });
+
+    const welcome = "Hi, I'm Andrija";
+    const subtext = "Cybersecurity Enthusiast • Red & Blue Teaming • Networking • OS internals";
+    const welcome_obj = document.querySelector(".hero h1");
+    const subtext_obj = document.querySelector(".hero p");
+    const delay_time = 70;
+
+    function writeOut() {
+      let delay = 0;
+
+      for (let i = 0; i < welcome.length; i++) {
+        const character = welcome[i];
+        setTimeout(() => {
+          welcome_obj.textContent += character;
+        }, delay);
+        delay += delay_time;
+      }
+
+      delay += 400;
+
+      for (let i = 0; i < subtext.length; i++) {
+        const character = subtext[i];
+        setTimeout(() => {
+          subtext_obj.textContent += character;
+        }, delay);
+        delay += delay_time / 2;
+      }
+    }
+
+    function onPageLoad() {
+      setTimeout(writeOut, 300);
+    }
   </script>
 </body>
 </html>
