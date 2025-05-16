@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
   <style>
-    /* Dodajem glitch animaciju za strelicu */
+    /* Dodajem glitch animaciju za strelicu ovde */
     @keyframes glitch-flicker {
       0%, 100% { opacity: 1; transform: translateY(0); }
       20% { opacity: 0; transform: translateY(2px) skewX(10deg); }
@@ -20,6 +20,7 @@
     .scroll-arrow {
       opacity: 0;
       transition: opacity 0.5s ease;
+      /* ostalo iz tvog CSS-a */
       width: 0;
       height: 0;
       margin-top: 2rem;
@@ -27,16 +28,6 @@
       border-right: 8px solid transparent;
       border-top: 12px solid #0f0;
       cursor: pointer;
-    }
-
-    /* Canvas kao fixed pozadina */
-    #matrix-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-      width: 100vw;
-      height: 100vh;
     }
   </style>
 </head>
@@ -105,11 +96,6 @@
     canvas.height = window.innerHeight;
     const cols = Math.floor(canvas.width / 20) + 1;
     let ypos = Array(cols).fill(0);
-    let scrollOffset = 0;
-
-    window.addEventListener('scroll', () => {
-      scrollOffset = window.scrollY * 0.3; // Parallax pomeraj
-    });
 
     function matrix() {
       if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) {
@@ -120,15 +106,12 @@
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = '#0f0';
       ctx.font = '20pt monospace';
-
       ypos.forEach((y, index) => {
-        const yPos = y + scrollOffset;
         const text = String.fromCharCode(0x30A0 + Math.random() * 97);
         const x = index * 20;
-        ctx.fillText(text, x, yPos);
-
-        if (yPos > canvas.height && Math.random() > 0.975) {
-          ypos[index] = 0 - scrollOffset; // Resetuj uz offset
+        ctx.fillText(text, x, y);
+        if (y > canvas.height && Math.random() > 0.975) {
+          ypos[index] = 0;
         } else {
           ypos[index] = y + 20;
         }
@@ -136,7 +119,6 @@
     }
 
     setInterval(matrix, 50);
-
     window.addEventListener('resize', () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
