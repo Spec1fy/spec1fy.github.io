@@ -11,11 +11,12 @@
 <body onload="onPageLoad()">
   <canvas id="matrix-canvas"></canvas>
 
-  <header class="hero">
-    <h1><span id="typed-text"></span><span class="cursor">|</span></h1>
-    <p></p>
-    <div class="scroll-arrow" onclick="scrollToNext()"></div>
-  </header>
+<header class="hero">
+  <h1><span id="typed-title"></span><span class="cursor" id="cursor-h1">|</span></h1>
+  <p><span id="typed-subtext"></span><span class="cursor" id="cursor-p" style="display: none;">|</span></p>
+  <div class="scroll-arrow" onclick="scrollToNext()"></div>
+</header>
+
 
   <section id="about">
     <h2>About</h2>
@@ -108,36 +109,52 @@
     const delay_time = 70;
 
     function writeOut() {
-      let delay = 0;
-      const typedText = document.getElementById("typed-text");
-      const cursor = document.querySelector(".cursor");
+    const welcome = "Hi, I'm Andrija";
+    const subtext = "Cybersecurity Enthusiast • Red & Blue Teaming • Networking • OS internals";
 
-      for (let i = 0; i < welcome.length; i++) {
-        const character = welcome[i];
-        setTimeout(() => {
-          typedText.textContent += character;
+    const titleEl = document.getElementById("typed-title");
+    const subtextEl = document.getElementById("typed-subtext");
+
+    const cursorH1 = document.getElementById("cursor-h1");
+    const cursorP = document.getElementById("cursor-p");
+
+    let delay = 0;
+
+ 
+    for (let i = 0; i < welcome.length; i++) {
+      setTimeout(() => {
+        titleEl.textContent += welcome[i];
       }, delay);
-        delay += delay_time;
-      }
+      delay += 70;
+    }
 
-  delay += 400;
 
-  for (let i = 0; i < subtext.length; i++) {
-    const character = subtext[i];
+    delay += 300;
     setTimeout(() => {
-      subtext_obj.textContent += character;
+      document.querySelector(".hero h1").style.fontSize = "2rem";
+      cursorH1.style.display = "none";
+      cursorP.style.display = "inline-block";
     }, delay);
-    delay += delay_time / 2;
+
+
+    delay += 200;
+    for (let i = 0; i < subtext.length; i++) {
+      setTimeout(() => {
+        subtextEl.textContent += subtext[i];
+      }, delay);
+      delay += 35;
+    }
+
+
+    setTimeout(() => {
+      cursorP.remove();
+    }, delay + 300);
   }
 
-  setTimeout(() => {
-    if (cursor) cursor.remove();
-  }, delay + 300);
-}
 
 
     function onPageLoad() {
-      setTimeout(writeOut, 300);
+      setTimeout(writeOut, 200);
     }
   </script>
 </body>
