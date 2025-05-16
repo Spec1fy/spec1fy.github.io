@@ -7,6 +7,29 @@
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <style>
+    /* Dodajem glitch animaciju za strelicu ovde */
+    @keyframes glitch-flicker {
+      0%, 100% { opacity: 1; transform: translateY(0); }
+      20% { opacity: 0; transform: translateY(2px) skewX(10deg); }
+      40% { opacity: 1; transform: translateY(-2px) skewX(-10deg); }
+      60% { opacity: 0.5; transform: translateY(1px); }
+      80% { opacity: 1; transform: translateY(0); }
+    }
+
+    .scroll-arrow {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      /* ostalo iz tvog CSS-a */
+      width: 0;
+      height: 0;
+      margin-top: 2rem;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 12px solid #0f0;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body onload="onPageLoad()">
   <canvas id="matrix-canvas"></canvas>
@@ -114,7 +137,6 @@
 
       let delay = 0;
 
-     
       for (let i = 0; i < welcome.length; i++) {
         setTimeout(() => {
           titleEl.textContent += welcome[i];
@@ -128,7 +150,6 @@
         cursorP.style.display = "inline-block";
       }, delay);
 
-     
       delay += 200;
       for (let i = 0; i < subtext.length; i++) {
         setTimeout(() => {
@@ -137,21 +158,20 @@
         delay += 35;
       }
 
-      
       setTimeout(() => {
         cursorP.remove();
 
-  // Pokazi strelicu glitch efektom
+        // Pokaži strelicu glitch efektom
         scrollArrow.style.opacity = "1";
         scrollArrow.style.animation = "glitch-flicker 0.6s ease-in-out 3";
 
-  // Nakon animacije, ukloni animaciju da strelica ostane statična
+        // Nakon animacije, ukloni animaciju da strelica ostane statična
         setTimeout(() => {
-        scrollArrow.style.animation = "";
-        } , 0.6 * 3 * 1000); // trajanje animacije * broj ponavljanja * 1000ms
+          scrollArrow.style.animation = "";
+        }, 0.6 * 3 * 1000); // trajanje animacije * broj ponavljanja * 1000ms
 
-    }, delay + 300);
-
+      }, delay + 300);
+    }
 
     function onPageLoad() {
       setTimeout(writeOut, 200);
