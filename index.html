@@ -98,7 +98,7 @@
       }
     }
 
-    
+   
     const canvas = document.getElementById('matrix-canvas');
     const ctx = canvas.getContext('2d');
     
@@ -118,7 +118,8 @@
     
     const fontSize = 16;
     const columns = Math.floor(canvas.width / fontSize);
-    const drops = Array(columns).fill(1);
+    const drops = Array(columns).fill(0);
+    const speeds = Array(columns).fill(0).map(() => Math.random() * 0.5 + 0.3); // Slower speed range
 
     function drawMatrix() {
       ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
@@ -131,10 +132,14 @@
         const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
         
+        
+        if (Math.random() > 0.95) {
+          drops[i] += speeds[i];
+        }
+        
         if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
-        drops[i]++;
       }
       
       requestAnimationFrame(drawMatrix);
