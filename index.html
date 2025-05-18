@@ -87,8 +87,8 @@
     <p>Made with 💻 & ☕ | © Spec1fy <span id="current-year"></span></p>
   </footer>
 
-  <script>
-   
+<script>
+    
     document.getElementById('current-year').textContent = new Date().getFullYear();
 
     function scrollToNext() {
@@ -119,10 +119,11 @@
     const fontSize = 16;
     const columns = Math.floor(canvas.width / fontSize);
     const drops = Array(columns).fill(0);
-    const speeds = Array(columns).fill(0).map(() => Math.random() * 0.5 + 0.3); // Slower speed range
+    const speeds = Array(columns).fill(0).map(() => Math.random() * 0.8 + 0.5); // Adjusted speed range
 
     function drawMatrix() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
       ctx.fillStyle = '#0f0';
@@ -132,8 +133,8 @@
         const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
         
-        
-        if (Math.random() > 0.95) {
+       
+        if (Math.random() > 0.7) { 
           drops[i] += speeds[i];
         }
         
@@ -145,9 +146,10 @@
       requestAnimationFrame(drawMatrix);
     }
 
-   
+  
     drawMatrix();
 
+  
     function writeOut() {
       const welcome = "Hi, I'm Andrija";
       const subtext = "Cybersecurity Enthusiast • Red & Blue Teaming • Networking • OS internals";
