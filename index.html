@@ -3,48 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Andrija - Portfolio</title>
+  <meta name="description" content="Andrija's Cybersecurity Portfolio - Red Teaming, Blue Teaming, and Security Research">
+  <title>Andrija Simić | Cybersecurity Specialist</title>
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
-  <style>
-
-    @keyframes glitch-flicker {
-      0%, 100% { opacity: 1; transform: translateY(0); }
-      20% { opacity: 0; transform: translateY(2px) skewX(10deg); }
-      40% { opacity: 1; transform: translateY(-2px) skewX(-10deg); }
-      60% { opacity: 0.5; transform: translateY(1px); }
-      80% { opacity: 1; transform: translateY(0); }
-    }
-
-    .scroll-arrow {
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      /* ostalo iz tvog CSS-a */
-      width: 0;
-      height: 0;
-      margin-top: 2rem;
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
-      border-top: 12px solid #0f0;
-      cursor: pointer;
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body onload="onPageLoad()">
+<body>
   <canvas id="matrix-canvas"></canvas>
 
   <header class="hero">
-    <h1><span id="typed-title"></span><span class="cursor" id="cursor-h1">|</span></h1>
-    <p><span id="typed-subtext"></span><span class="cursor" id="cursor-p" style="display: none;">|</span></p>
-    <div class="scroll-arrow" onclick="scrollToNext()"></div>
+    <div class="hero-content">
+      <h1><span id="typed-title"></span><span class="cursor" id="cursor-h1">|</span></h1>
+      <p><span id="typed-subtext"></span><span class="cursor" id="cursor-p" style="display: none;">|</span></p>
+      <div class="scroll-arrow" onclick="scrollToNext()"></div>
+    </div>
   </header>
 
   <section id="about">
     <h2>About</h2>
     <div class="content-box">
       <p>
-        I’m passionate about <strong>cybersecurity</strong>, especially <strong>red teaming</strong> and exploring how systems work under the hood. I also enjoy <strong>defensive techniques</strong> and building <strong>resilient systems</strong>. Currently leveling up via platforms like <strong>TryHackMe</strong>.
+        I'm passionate about <strong>cybersecurity</strong>, especially <strong>red teaming</strong> and exploring how systems work under the hood. I also enjoy <strong>defensive techniques</strong> and building <strong>resilient systems</strong>. Currently leveling up via platforms like <strong>TryHackMe</strong>.
       </p>
     </div>
   </section>
@@ -53,7 +35,7 @@
     <h2>Labs & Links</h2>
     <div class="content-box">
       <ul>
-        <li><a href="https://tryhackme.com/p/Spec1fy" target="_blank">My TryHackMe Profile</a></li>
+        <li><a href="https://tryhackme.com/p/Spec1fy" target="_blank" rel="noopener noreferrer">My TryHackMe Profile</a></li>
         <li><a href="#">Red Team Lab 1 - Coming Soon</a></li>
         <li><a href="#">Blue Team Detection Project - Coming Soon</a></li>
       </ul>
@@ -63,7 +45,18 @@
   <section id="skills">
     <h2>Skills</h2>
     <div class="content-box">
-      <p>Linux, Metasploit, Wireshark, Burp Suite, Nmap, OSINT, Splunk, Windows Internals, Networking, Grafana</p>
+      <ul class="skills-list">
+        <li>Linux</li>
+        <li>Metasploit</li>
+        <li>Wireshark</li>
+        <li>Burp Suite</li>
+        <li>Nmap</li>
+        <li>OSINT</li>
+        <li>Splunk</li>
+        <li>Windows Internals</li>
+        <li>Networking</li>
+        <li>Grafana</li>
+      </ul>
     </div>
   </section>
 
@@ -71,112 +64,17 @@
     <h2>Contact & Links</h2>
     <div class="content-box">
       <ul>
-        <li><a href="https://github.com/Spec1fy" target="_blank">GitHub</a></li>
-        <li><a href="https://www.linkedin.com/in/andrija-simi%C4%87-257781320/" target="_blank">LinkedIn</a></li>
+        <li><a href="https://github.com/Spec1fy" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/andrija-simi%C4%87-257781320/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
         <li><a href="mailto:andrijal2@sbb.rs">Email Me</a></li>
       </ul>
     </div>
   </section>
 
   <footer>
-    <p>Made with 💻 & ☕ | © Spec1fy 2025</p>
+    <p>Made with 💻 & ☕ | © Spec1fy <span id="current-year"></span></p>
   </footer>
 
-  <script>
-    function scrollToNext() {
-      const nextSection = document.querySelector("section");
-      if (nextSection) {
-        nextSection.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-
-    const canvas = document.getElementById('matrix-canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    const cols = Math.floor(canvas.width / 20) + 1;
-    let ypos = Array(cols).fill(0);
-
-    function matrix() {
-      if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#0f0';
-      ctx.font = '20pt monospace';
-      ypos.forEach((y, index) => {
-        const text = String.fromCharCode(0x30A0 + Math.random() * 97);
-        const x = index * 20;
-        ctx.fillText(text, x, y);
-        if (y > canvas.height && Math.random() > 0.975) {
-          ypos[index] = 0;
-        } else {
-          ypos[index] = y + 20;
-        }
-      });
-    }
-
-    setInterval(matrix, 50);
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-
-    function writeOut() {
-      const welcome = "Hi, I'm Andrija";
-      const subtext = "Cybersecurity Enthusiast • Red & Blue Teaming • Networking • OS internals";
-
-      const titleEl = document.getElementById("typed-title");
-      const subtextEl = document.getElementById("typed-subtext");
-
-      const cursorH1 = document.getElementById("cursor-h1");
-      const cursorP = document.getElementById("cursor-p");
-      const scrollArrow = document.querySelector(".scroll-arrow");
-
-      let delay = 0;
-
-      for (let i = 0; i < welcome.length; i++) {
-        setTimeout(() => {
-          titleEl.textContent += welcome[i];
-        }, delay);
-        delay += 70;
-      }
-
-      delay += 300;
-      setTimeout(() => {
-        cursorH1.style.display = "none";
-        cursorP.style.display = "inline-block";
-      }, delay);
-
-      delay += 200;
-      for (let i = 0; i < subtext.length; i++) {
-        setTimeout(() => {
-          subtextEl.textContent += subtext[i];
-        }, delay);
-        delay += 35;
-      }
-
-      setTimeout(() => {
-        cursorP.remove();
-
-       
-        scrollArrow.style.opacity = "1";
-        scrollArrow.style.animation = "glitch-flicker 0.6s ease-in-out 3";
-
-       
-        setTimeout(() => {
-          scrollArrow.style.animation = "";
-        }, 0.6 * 3 * 1000); 
-
-      }, delay + 300);
-    }
-
-    function onPageLoad() {
-      setTimeout(writeOut, 200);
-    }
-  
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
