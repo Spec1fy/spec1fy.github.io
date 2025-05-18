@@ -172,3 +172,18 @@ footer {
   width: 100%;
   margin-top: 1.5rem;
 }
+
+.socket {
+  box-shadow: -0.05em 0.1em 0.2em -0.2em white;
+  background: light-dark(hsl(0 0% 90%), hsl(0 0% 0%));
+  position: relative;
+  inset: 0;
+}
+
+.socket-shadow {
+  position: absolute;
+  inset: 0 0em;
+  opacity: 0;
+  border-radius: inherit;
+  box-shadow: 0em 0.075em 0.1em 0em white;
+}
