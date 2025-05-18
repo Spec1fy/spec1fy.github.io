@@ -6,12 +6,37 @@
   <meta name="description" content="Andrija's Cybersecurity Portfolio - Red Teaming, Blue Teaming, and Security Research">
   <title>Andrija Simić | Cybersecurity Specialist</title>
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <style>
+    @keyframes glitch-flicker {
+      0%, 100% { opacity: 1; transform: translateY(0); }
+      20% { opacity: 0; transform: translateY(2px) skewX(10deg); }
+      40% { opacity: 1; transform: translateY(-2px) skewX(-10deg); }
+      60% { opacity: 0.5; transform: translateY(1px); }
+      80% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+    }
+
+    .scroll-arrow {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      width: 0;
+      height: 0;
+      margin-top: 2rem;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 15px solid #0f0;
+      cursor: pointer;
+      animation: pulse 2s infinite;
+    }
+  </style>
 </head>
-<body>
+<body onload="onPageLoad()">
   <canvas id="matrix-canvas"></canvas>
 
   <header class="hero">
@@ -75,6 +100,111 @@
     <p>Made with 💻 & ☕ | © Spec1fy <span id="current-year"></span></p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // Set current year in footer
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    function scrollToNext() {
+      const nextSection = document.querySelector("section");
+      if (nextSection) {
+        nextSection.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+
+    // Matrix Effect with performance optimization
+    const canvas = document.getElementById('matrix-canvas');
+    const ctx = canvas.getContext('2d');
+    
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const cols = Math.floor(canvas.width / 20) + 1;
+    const ypos = Array(cols).fill(0);
+    let matrixInterval;
+
+    function matrix() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#0f0';
+      ctx.font = '15pt monospace';
+      
+      ypos.forEach((y, index) => {
+        const text = String.fromCharCode(0x30A0 + Math.random() * 96);
+        const x = index * 20;
+        ctx.fillText(text, x, y);
+        
+        if (y > canvas.height && Math.random() > 0.975) {
+          ypos[index] = 0;
+        } else {
+          ypos[index] = y + 20;
+        }
+      });
+    }
+
+    // Start with slower frame rate for better performance
+    matrixInterval = setInterval(matrix, 100);
+
+    // Pause animation when tab is inactive
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        clearInterval(matrixInterval);
+      } else {
+        matrixInterval = setInterval(matrix, 100);
+      }
+    });
+
+    function writeOut() {
+      const welcome = "Hi, I'm Andrija";
+      const subtext = "Cybersecurity Enthusiast • Red & Blue Teaming • Networking • OS internals";
+
+      const titleEl = document.getElementById("typed-title");
+      const subtextEl = document.getElementById("typed-subtext");
+      const cursorH1 = document.getElementById("cursor-h1");
+      const cursorP = document.getElementById("cursor-p");
+      const scrollArrow = document.querySelector(".scroll-arrow");
+
+      let delay = 0;
+
+      for (let i = 0; i < welcome.length; i++) {
+        setTimeout(() => {
+          titleEl.textContent += welcome[i];
+        }, delay);
+        delay += 70;
+      }
+
+      delay += 300;
+      setTimeout(() => {
+        cursorH1.style.display = "none";
+        cursorP.style.display = "inline-block";
+      }, delay);
+
+      delay += 200;
+      for (let i = 0; i < subtext.length; i++) {
+        setTimeout(() => {
+          subtextEl.textContent += subtext[i];
+        }, delay);
+        delay += 35;
+      }
+
+      setTimeout(() => {
+        cursorP.remove();
+        scrollArrow.style.opacity = "1";
+        scrollArrow.style.animation = "glitch-flicker 0.6s ease-in-out 3";
+
+        setTimeout(() => {
+          scrollArrow.style.animation = "";
+        }, 1800);
+      }, delay + 300);
+    }
+
+    function onPageLoad() {
+      setTimeout(writeOut, 200);
+    }
+  </script>
 </body>
 </html>
