@@ -33,6 +33,7 @@
 </head>
 <body onload="onPageLoad()">
   <canvas id="matrix-canvas"></canvas>
+  <button id="toggle-theme" style="position: fixed; top: 20px; right: 20px; z-index: 10;">Toggle Theme</button>
 
   <header class="hero">
     <h1><span id="typed-title"></span><span class="cursor" id="cursor-h1">|</span></h1>
@@ -176,6 +177,20 @@
     function onPageLoad() {
       setTimeout(writeOut, 200);
     }
+    const toggleThemeBtn = document.getElementById("toggle-theme");
+    const userPref = localStorage.getItem("theme");
+
+    if (userPref === "light") {
+      document.body.classList.add("light-mode");
+    }
+
+    toggleThemeBtn.addEventListener("click", () => {
+      document.body.classList.toggle("light-mode");
+      const isLight = document.body.classList.contains("light-mode");
+      localStorage.setItem("theme", isLight ? "light" : "dark");
+    });
+
+  
   </script>
 </body>
 </html>
