@@ -104,13 +104,16 @@ section h2 {
   box-shadow: 0 0 15px rgba(0, 255, 100, 0.1);
 }
 
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+
+.content-box ul {
+  padding-left: 0;
+  text-align: center;
+  margin: 0 auto;
 }
 
-ul li {
+.content-box li {
+  text-align: center;
+  display: block;
   margin-bottom: 1rem;
 }
 
@@ -119,6 +122,7 @@ ul li {
   flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
+  padding-left: 0;
 }
 
 .skills-list li {
@@ -126,6 +130,7 @@ ul li {
   padding: 0.5rem 1rem;
   border-radius: 4px;
   border: 1px solid #009970;
+  display: inline-block;
 }
 
 a {
@@ -179,9 +184,19 @@ footer {
 
   .content-box {
     padding: 1.5rem;
+    width: 90%;
   }
 
   section {
     padding: 3rem 1.5rem;
+  }
+
+  .skills-list {
+    gap: 0.75rem;
+  }
+
+  .skills-list li {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
   }
 }
